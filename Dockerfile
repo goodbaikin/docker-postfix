@@ -9,10 +9,10 @@ RUN --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update &&\
     # Start editing
     # Install package here for cache
-    apt-get -y install supervisor postfix sasl2-bin opendkim opendkim-tools
+    apt-get -y install  postfix sasl2-bin opendkim opendkim-tools 
 
 # Add files
-ADD assets/install.sh /opt/install.sh
+ADD assets/docker-entrypoint.sh /
 
 # Run
-CMD /opt/install.sh;/usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+CMD ["/docker-entrypoint.sh"]
